@@ -1,4 +1,4 @@
-class ToyLangInterpreter {
+class MineInterpreter {
     constructor() {
         this.variables = {};
     }
