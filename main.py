@@ -1,6 +1,6 @@
 import re
 
-class ToyLangInterpreter:
+class MineInterpreter:
     def __init__(self):
         self.variables = {}
 
@@ -42,14 +42,3 @@ class ToyLangInterpreter:
         except Exception as e:
             print(f"Evaluation error: {e}")
             return None
-
-if __name__ == "__main__":
-    code = """
-    x = 10
-    y = 20
-    print(x + y)
-    z = x * y
-    print(z)
-    """
-    interpreter = ToyLangInterpreter()
-    interpreter.parse(code)
