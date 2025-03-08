@@ -1,0 +1,15 @@
+{
+  "name": "mine",
+  "version": "1.0.0",
+  "description": "A simple programming language.",
+  "main": "src/main.js",
+  "scripts": {
+    "build": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Pjdur",
+  "license": "MIT",
+  "dependencies": {
+    "pkg": "5.8.1"
+  }
+}

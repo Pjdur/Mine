@@ -16,12 +16,13 @@ Mine is a simple programming language designed to be easy to learn and use. It i
 
 ## Features
 - Easy to learn syntax
-- Supports both JavaScript and Python
 - Lightweight and fast
 - Cross-platform compatibility
 
 ## Installation
 To install Mine, follow these steps:
+
+### Build from source
 
 1. Clone the repository:
     ```bash
@@ -37,7 +38,11 @@ To install Mine, follow these steps:
     ```bash
     npm install
     ```
-
+4. Build Mine:
+    ```bash
+    npm run build
+    ```
+    
 ## Usage
 To use Mine, you can run the interpreter with the following command:
 
