@@ -1,4 +1,3 @@
-```javascript
 class ToyLangInterpreter {
     constructor() {
         this.variables = {};
@@ -53,15 +52,3 @@ class ToyLangInterpreter {
         }
     }
 }
-
-const code = `
-    x = 10
-    y = 20
-    print(x + y)
-    z = x * y
-    print(z)
-`;
-
-const interpreter = new ToyLangInterpreter();
-interpreter.parse(code);
-```
