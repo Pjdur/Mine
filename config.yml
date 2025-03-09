@@ -1,0 +1,12 @@
+settings:
+  language: "en"
+  theme: "default"
+  logging:
+    level: "info"
+    file: "logs/mine.log"
+  interpreter:
+    timeout: 5000  # in milliseconds
+    max_memory: 1024  # in MB
+  paths:
+    scripts: "scripts/"
+    logs: "logs/"

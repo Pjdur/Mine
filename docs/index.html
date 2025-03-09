@@ -13,15 +13,24 @@
     <header>
         <h1>Mine</h1>
         <p>A simple programming language</p>
+        <div class="slider-container">
+            <button id="windows-btn">Windows</button>
+            <button id="linux-btn">Linux</button>
+            <div id="slider"></div>
+        </div>
+        <div id="windows-section" class="install-section">
+            <h3>Install on Windows</h3>
+            <pre><code>choco install mine</code></pre>
+        </div>
+        <div id="linux-section" class="install-section">
+            <h3>Install on Linux</h3>
+            <pre><code>sudo apt-get install mine</code></pre>
+        </div>
         <nav>
             <ul>
-                <li><a href="#introduction">Introduction</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#installation">Installation</a></li>
-                <li><a href="#usage">Usage</a></li>
-                <li><a href="#examples">Examples</a></li>
-                <li><a href="#contributing">Contributing</a></li>
-                <li><a href="#license">License</a></li>
+                <li>
+                    <a href="#introduction">Introduction</a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -54,49 +63,7 @@
             <h3>Build from source</h3>
             <ol>
                 <li>Clone the repository:
-                    <pre><code>git clone https://github.com/Pjdur/Mine.git</code></pre>
-                </li>
-                <li>Navigate to the project directory:
-                    <pre><code>cd Mine</code></pre>
-                </li>
-                <li>Install the dependencies:
-                    <pre><code>npm install</code></pre>
-                </li>
-                <li>Build Mine:
-                    <pre><code>npm run build</code></pre>
-                </li>
-            </ol>
-        </section>
-        <section id="usage">
-            <h2>Usage</h2>
-            <p>To use Mine, you can run the interpreter with the following command:</p>
-            <pre><code>node mine.js &lt;your-script.mine&gt;</code></pre>
-            <p>Replace <code>&lt;your-script.mine&gt;</code> with the path to your Mine script.</p>
-            <p>Mine can run with any file, regardless of filename, as long as it follows the syntax. But the two main file types are <code>.mn</code> and <code>.mine</code>.</p>
-        </section>
-        <section id="examples">
-            <h2>Examples</h2>
-            <h3>Hello World</h3>
-            <pre><code class="language-mine">print("Hello, World!")</code></pre>
-            <h3>Simple Addition</h3>
-            <pre><code class="language-mine">let result = 5 + 3
-print(result)</code></pre>
-        </section>
-        <section id="contributing">
-            <h2>Contributing</h2>
-            <p>We welcome contributions to Mine! If you would like to contribute, please follow these steps:</p>
-            <ol>
-                <li>Fork the repository.</li>
-                <li>Create a new branch with your feature or bugfix.</li>
-                <li>Commit your changes and push them to your branch.</li>
-                <li>Create a pull request with a detailed description of your changes.</li>
-            </ol>
-        </section>
-        <section id="license">
-            <h2>License</h2>
-            <p>This project is licensed under the MIT License. See the <a href="../LICENSE">LICENSE</a> file for more details.</p>
-        </section>
-    </main>
+                    <pre><code>git clone
     <footer>
         <!-- Footer content will be dynamically generated -->
     </footer>
