@@ -71,7 +71,7 @@ The Mine Interpreter is a simple scripting language interpreter implemented in J
 To run the interpreter from the command line, use the following command:
 
 ```sh
-node src/mine.js <file-name>
+mine <file-name>
 ```
 
 Replace `<file-name>` with the path to your Mine script file.
