@@ -1,3 +1,6 @@
+# Manually set PSScriptRoot to the directory where the script is located
+$PSScriptRoot = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
+
 # Create home directory path if it doesn't exist
 $homeDir = "$env:USERPROFILE\mine"
 if (-Not (Test-Path $homeDir)) {
