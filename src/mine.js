@@ -10,16 +10,42 @@ class MineInterpreter {
         let i = 0;
         while (i < lines.length) {
             let line = lines[i].trim();
+
+            // Skip empty lines
+            if (line === '') {
+                i++;
+                continue;
+            }
+
             if (line.startsWith('if') || line.startsWith('while')) {
-                const blockLines = [];
-                let openBraces = 0;
-                do {
-                    blockLines.push(lines[i].trim());
-                    openBraces += (lines[i].match(/{/g) || []).length;
-                    openBraces -= (lines[i].match(/}/g) || []).length;
-                    i++;
-                } while (openBraces > 0 && i < lines.length);
-                this.execute(blockLines.join('\n'));
+                // Get the initial condition part
+                const conditionPart = line;
+                const blockLines = [conditionPart];
+                let j = i + 1;
+                let openBraces = (line.match(/{/g) || []).length;
+                openBraces -= (line.match(/}/g) || []).length;
+
+                // Collect all lines in the block
+                while (openBraces > 0 && j < lines.length) {
+                    let blockLine = lines[j].trim();
+                    if (blockLine !== '') {
+                        blockLines.push(blockLine);
+                        openBraces += (blockLine.match(/{/g) || []).length;
+                        openBraces -= (blockLine.match(/}/g) || []).length;
+                    }
+                    j++;
+                }
+
+                // If this is an if statement
+                if (line.startsWith('if')) {
+                    this.handle_if(blockLines.join('\n'));
+                }
+                // If this is a while statement
+                else if (line.startsWith('while')) {
+                    this.handle_while(blockLines.join('\n'));
+                }
+
+                i = j;
             } else {
                 this.execute(line);
                 i++;
@@ -28,6 +54,11 @@ class MineInterpreter {
     }
 
     execute(line) {
+        // Skip empty lines
+        if (line.trim() === '') {
+            return;
+        }
+
         if (line.startsWith('print')) {
             this.handle_print(line);
         } else if (line.includes('=')) {
@@ -65,7 +96,9 @@ class MineInterpreter {
     }
 
     handle_if(line) {
-        const match = line.match(/if\s*\((.*)\)\s*{([\s\S]*)}/);
+        // Use a regex that can capture the condition and the code block
+        // even if there are multiple lines and nested braces
+        const match = line.match(/if\s*\((.*?)\)\s*{([\s\S]*?)}/s);
         if (match) {
             const condition = match[1].trim();
             const codeBlock = match[2].trim();
@@ -73,12 +106,14 @@ class MineInterpreter {
                 this.parse_block(codeBlock);
             }
         } else {
-            console.log(`Syntax error: ${line}`);
+            console.log(`Syntax error in if statement: ${line}`);
         }
     }
 
     handle_while(line) {
-        const match = line.match(/while\s*\((.*)\)\s*{([\s\S]*)}/);
+        // Use a regex that can capture the condition and the code block
+        // even if there are multiple lines and nested braces
+        const match = line.match(/while\s*\((.*?)\)\s*{([\s\S]*?)}/s);
         if (match) {
             const condition = match[1].trim();
             const codeBlock = match[2].trim();
@@ -86,21 +121,40 @@ class MineInterpreter {
                 this.parse_block(codeBlock);
             }
         } else {
-            console.log(`Syntax error: ${line}`);
+            console.log(`Syntax error in while statement: ${line}`);
         }
     }
 
     parse_block(codeBlock) {
         const lines = codeBlock.split('\n');
         for (let line of lines) {
-            this.execute(line.trim());
+            const trimmedLine = line.trim();
+            // Skip empty lines
+            if (trimmedLine !== '') {
+                this.execute(trimmedLine);
+            }
         }
     }
 
     evaluate_expression(expression) {
         try {
-            const func = new Function(...Object.keys(this.variables), `return ${expression};`);
-            return func(...Object.values(this.variables));
+            // Check if it's a string literal (starts and ends with quotes)
+            if ((expression.startsWith('"') && expression.endsWith('"')) ||
+                (expression.startsWith("'") && expression.endsWith("'"))) {
+                return expression.substring(1, expression.length - 1);
+            }
+
+            // For other expressions, use Function constructor but with better string handling
+            const variableNames = Object.keys(this.variables);
+            const variableValues = Object.values(this.variables);
+
+            // Use a safer approach to evaluate expressions
+            const modifiedExpression = expression.replace(/(['"])(.*?)\1/g, (match) => {
+                return JSON.stringify(match.slice(1, -1));
+            });
+
+            const func = new Function(...variableNames, `return ${modifiedExpression};`);
+            return func(...variableValues);
         } catch (error) {
             console.log(`Evaluation error: ${error}`);
             return null;
