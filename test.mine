@@ -8,4 +8,5 @@ if (x < y) {
 
 while (x < 15) {
     print(x)
+    x = x + !
 }
