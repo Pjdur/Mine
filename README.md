@@ -153,4 +153,4 @@ We welcome contributions to Mine! If you would like to contribute, please follow
 4. Create a pull request with a detailed description of your changes.
 
 # License
-This project is licensed under the MIT License. See the [LICENSE](License) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for more details.
