@@ -7,7 +7,7 @@ if [ ! -d "$homeDir" ]; then
 fi
 
 # Define file paths
-sourceFile="$(dirname "$0")/bin/mine-win.exe"
+sourceFile="$(dirname "$0")/bin/mine-linux"
 destFile="$homeDir/mine/bin/mine"
 
 # Create bin directory if it doesn't exist
