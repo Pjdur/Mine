@@ -4,7 +4,7 @@
   "description": "A simple programming language.",
   "main": "src/main.js",
   "scripts": {
-    "build": "pkg -t node20-win-x64 src/main.js"
+    "build": "pkg -t node18-linux,node18-win src/main.js"
   },
   "keywords": [],
   "author": "Pjdur",

@@ -42,7 +42,7 @@ To install Mine, follow these steps:
     ```bash
     npm run build
     ```
-    
+
 ## Usage
 To use Mine, you can run the interpreter with the following command:
 
@@ -51,6 +51,7 @@ node mine.js <your-script.mine>
 ```
 Replace <your-script.mine> with the path to your Mine script.
 
+> Mine can run with any file, regardless of filename, as long as it follows the syntax. But the two main file types are `.mn` and `.mine`
 Examples
 Here are some examples of how to use Mine:
 
