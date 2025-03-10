@@ -5,7 +5,7 @@ if (-Not (Test-Path $homeDir)) {
 }
 
 # Define file paths
-$sourceFile = Join-Path -Path $PSScriptRoot -ChildPath 'https://github.com/Pjdur/Mine/bin/mine-win.exe' # Absolute path for avoiding directory errors
+$sourceFile = Join-Path -Path -ChildPath 'https://github.com/Pjdur/Mine/bin/mine-win.exe' # Absolute path for avoiding directory errors
 $destFile = Join-Path -Path $homeDir -ChildPath 'mine\bin\mine'
 
 # Copy file to home directory
