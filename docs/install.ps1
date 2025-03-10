@@ -1,6 +1,3 @@
-# Manually set PSScriptRoot to the directory where the script is located
-$PSScriptRoot = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
-
 # Create home directory path if it doesn't exist
 $homeDir = "$env:USERPROFILE\mine"
 if (-Not (Test-Path $homeDir)) {
@@ -8,7 +5,7 @@ if (-Not (Test-Path $homeDir)) {
 }
 
 # Define file paths
-$sourceFile = Join-Path -Path $PSScriptRoot -ChildPath 'bin\mine-win.exe'
+$sourceFile = Join-Path -Path $PSScriptRoot -ChildPath 'https://github.com/Pjdur/Mine/bin/mine-win.exe' # Absolute path for avoiding directory errors
 $destFile = Join-Path -Path $homeDir -ChildPath 'mine\bin\mine'
 
 # Copy file to home directory
@@ -34,10 +31,10 @@ try {
         
         # Refresh PATH in current session
         $env:Path = [Environment]::GetEnvironmentVariable('Path', 'User')
-        Write-Host "Directory successfully added to PATH"
+        Write-Host "Mine has been successfully installed."
     }
     else {
-        Write-Host "Directory is already in PATH"
+        Write-Host "Mine is already installed."
     }
 }
 catch {
