@@ -1,20 +1,20 @@
 # Create home directory path if it doesn't exist
-$homeDir = "$env:USERPROFILE\mine"
+$homeDir = "$env:USERPROFILE\\mine"
 if (-Not (Test-Path $homeDir)) {
     New-Item -ItemType Directory -Force -Path $homeDir | Out-Null
 }
 
 # Define file paths
-$sourceFile = Join-Path -Path -ChildPath 'https://github.com/Pjdur/Mine/bin/mine-win.exe' # Absolute path for avoiding directory errors
-$destFile = Join-Path -Path $homeDir -ChildPath 'mine\bin\mine'
+$sourceFile = 'https://github.com/Pjdur/Mine/releases/latest/download/mine-win.exe' # Correct URL for the executable
+$destFile = Join-Path -Path $homeDir -ChildPath 'bin\\mine.exe'
 
-# Copy file to home directory
+# Download file to home directory
 try {
-    Copy-Item -Path $sourceFile -Destination $destFile -Force
+    Invoke-WebRequest -Uri $sourceFile -OutFile $destFile -UseBasicParsing
     Write-Host "Successfully installed mine to $homeDir"
 }
 catch {
-    Write-Error "Failed to copy file: $_"
+    Write-Error "Failed to download file: $_"
     exit 1
 }
 
