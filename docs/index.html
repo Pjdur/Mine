@@ -28,16 +28,18 @@
         </div>
         <nav>
             <ul>
-                <li>
-                    <a href="#introduction">Introduction</a>
-                </li>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#community">Community</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <section id="introduction">
             <h2>Introduction</h2>
-            <p>Mine is a simple programming language designed to be easy to learn and use. It is suitable for beginners who want to get started with programming, as well as for experienced developers looking for a lightweight language for scripting and quick development tasks.</p>
+            <p>Mine is a simple programming language designed to be easy to learn and use. It is suitable for beginners who want to get started with programming, as well as for experienced developers looking for a lightweight language for scripting and automation.</p>
         </section>
         <section id="features">
             <h2>Features</h2>
@@ -63,7 +65,43 @@
             <h3>Build from source</h3>
             <ol>
                 <li>Clone the repository:
-                    <pre><code>git clone
+                    <pre><code>git clone https://github.com/Pjdur/Mine.git</code></pre>
+                </li>
+                <li>Navigate to the project directory:
+                    <pre><code>cd Mine</code></pre>
+                </li>
+                <li>Build the project:
+                    <pre><code>make build</code></pre>
+                </li>
+                <li>Add the executable to your PATH:
+                    <pre><code>export PATH=$PATH:$(pwd)/bin</code></pre>
+                </li>
+            </ol>
+        </section>
+        <section id="examples">
+            <h2>Examples</h2>
+            <h3>Hello World</h3>
+            <pre><code class="language-python">print("Hello, World!")</code></pre>
+            <h3>Conditional Statement</h3>
+            <pre><code class="language-python">if (x > 10) {
+    print("x is greater than 10")
+}</code></pre>
+            <h3>Loop</h3>
+            <pre><code class="language-python">while (x < 10) {
+    print(x)
+    x = x + 1
+}</code></pre>
+        </section>
+        <section id="community">
+            <h2>Community</h2>
+            <p>Join our community to stay updated with the latest news, tutorials, and support:</p>
+            <ul>
+                <li><a href="https://github.com/Pjdur/Mine/discussions">GitHub Discussions</a></li>
+                <li><a href="https://twitter.com/PjdurMine">Twitter</a></li>
+                <li><a href="https://pjdur.github.io/mine/blog">Blog</a></li>
+            </ul>
+        </section>
+    </main>
     <footer>
         <!-- Footer content will be dynamically generated -->
     </footer>
