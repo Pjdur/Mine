@@ -166,7 +166,7 @@ class MineInterpreter {
 if (require.main === module) {
     const args = process.argv.slice(2);
     if (args.length !== 1) {
-        console.log('Usage: node mine.js <file-name>');
+        console.log('Usage: mine <file-name>');
         process.exit(1);
     }
 
