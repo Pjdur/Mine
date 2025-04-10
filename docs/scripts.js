@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const windowsBtn = document.getElementById('windows-btn');
     const linuxBtn = document.getElementById('linux-btn');
     const slider = document.getElementById('slider');
+    slider.style.width = '150px';
     const windowsSection = document.getElementById('windows-section');
     const linuxSection = document.getElementById('linux-section');
 
