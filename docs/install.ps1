@@ -1,5 +1,6 @@
 # Set variables
-$homeDir = "C:\root"
+$homeDir = "C:\Users\$env:USERNAME"
+# Check if the script is running in PowerShell
 $exeUrl = "https://github.com/Pjdur/Mine/blob/main/bin/mine-win.exe?raw=true"
 $destFile = Join-Path -Path $homeDir -ChildPath "mine\bin\mine.exe"
 $binDir = Split-Path -Path $destFile -Parent
