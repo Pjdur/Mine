@@ -1,24 +1,26 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const footer = document.createElement('footer');
     const currentYear = new Date().getFullYear();
     const lastModified = document.lastModified;
 
     footer.innerHTML = `&copy; ${currentYear} Mine | Last Modified: ${lastModified}`;
     document.body.appendChild(footer);
-});
 
-document.getElementById('windows-btn').addEventListener('click', function() {
-    document.getElementById('slider').style.transform = 'translateX(0)';
-    document.getElementById('windows-section').style.display = 'block';
-    document.getElementById('linux-section').style.display = 'none';
-});
+    const windowsBtn = document.getElementById('windows-btn');
+    const linuxBtn = document.getElementById('linux-btn');
+    const slider = document.getElementById('slider');
+    const windowsSection = document.getElementById('windows-section');
+    const linuxSection = document.getElementById('linux-section');
 
-document.getElementById('linux-btn').addEventListener('click', function() {
-    document.getElementById('slider').style.transform = 'translateX(100%)';
-    document.getElementById('windows-section').style.display = 'none';
-    document.getElementById('linux-section').style.display = 'block';
-});
+    if (windowsBtn && linuxBtn && slider && windowsSection && linuxSection) {
+        windowsBtn.addEventListener('click', function () {
+            slider.style.transform = 'translateX(0)';
+        });
 
-// Initialize
-document.getElementById('windows-section').style.display = 'block';
-document.getElementById('linux-section').style.display = 'none';
+        linuxBtn.addEventListener('click', function () {
+            slider.style.transform = 'translateX(100%)';
+        });
+    } else {
+        console.error('One or more required elements are missing.');
+    }
+});
