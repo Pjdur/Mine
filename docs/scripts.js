@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (windowsBtn && linuxBtn && slider && windowsSection && linuxSection) {
         windowsBtn.addEventListener('click', function () {
-            slider.style.transform = 'translateX(0)';
+            slider.style.transform = 'translateX(50%)';
         });
 
         linuxBtn.addEventListener('click', function () {
