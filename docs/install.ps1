@@ -1,7 +1,7 @@
 # Set variables
 $homeDir = "$env:USERPROFILE\.mine"
 $exeUrl = "https://github.com/Pjdur/Mine/blob/main/bin/mine-win.exe?raw=true"
-$destFile = Join-Path -Path $homeDir -ChildPath "mine\bin\mine.exe"
+$destFile = Join-Path -Path $homeDir -ChildPath "bin\mine.exe"
 $binDir = Split-Path -Path $destFile -Parent
 $expectedChecksum = "19D05FA769D6FB763BE16419CFA61676674A9C2FFB500201F77541B60A70F40A"
 
@@ -30,14 +30,16 @@ if (-not (Test-Path -Path $binDir)) {
 try {
     # Download the executable directly
 
-    $totalBytes = $webClient.ResponseHeaders["Content-Length"]
+    $webClient = New-Object System.Net.WebClient
+    $totalBytes = $webClient.DownloadData($exeUrl).Length
     $downloadedBytes = 0
     $bufferSize = 8192
 
     Write-Host "Downloading executable..."
-    [System.IO.File]::Delete($destFile) | Out-Null
+    if (Test-Path $destFile) {
+        [System.IO.File]::Delete($destFile)
+    }
     $stream = [System.IO.File]::Create($destFile)
-    $webClient = New-Object System.Net.WebClient
     $webStream = $webClient.OpenRead($exeUrl)
 
     try {
@@ -45,8 +47,8 @@ try {
         while (($bytesRead = $webStream.Read($buffer, 0, $bufferSize)) -gt 0) {
             $stream.Write($buffer, 0, $bytesRead)
             $downloadedBytes += $bytesRead
-
-            $percentComplete = [math]::Round(($downloadedBytes / $totalBytes) * 100)
+            $progressBar = ("#" * ($percentComplete / 5)) + ("-" * (20 - [math]::Floor($percentComplete / 5)))
+            Write-Host -NoNewline "`r[$progressBar] $percentComplete% "
             $progressBar = ("#" * ($percentComplete / 5)) + ("-" * (20 - ($percentComplete / 5)))
             Write-Host -NoNewline "`r[$progressBar] $percentComplete% "
         }
