@@ -1,5 +1,5 @@
 # Set variables
-$homeDir = [System.Environment]::GetFolderPath('User Profile')
+$homeDir = "$env:USERPROFILE\.mine"
 $exeUrl = "https://github.com/Pjdur/Mine/blob/main/bin/mine-win.exe?raw=true"
 $destFile = Join-Path -Path $homeDir -ChildPath "mine\bin\mine.exe"
 $binDir = Split-Path -Path $destFile -Parent
