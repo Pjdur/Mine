@@ -30,7 +30,7 @@ if (-not (Test-Path -Path $binDir)) {
 try {
     # Download the executable directly
 
-    $totalBytes = $response.Headers["Content-Length"]
+    $totalBytes = $webClient.ResponseHeaders["Content-Length"]
     $downloadedBytes = 0
     $bufferSize = 8192
 
