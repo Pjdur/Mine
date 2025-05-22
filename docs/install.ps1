@@ -28,8 +28,7 @@ if (-not (Test-Path -Path $binDir)) {
 }
 
 try {
-    # Download the executable directly
-
+    # Download the executable with progress indication
     $webClient = New-Object System.Net.WebClient
     $totalBytes = $webClient.DownloadData($exeUrl).Length
     $downloadedBytes = 0
@@ -47,9 +46,12 @@ try {
         while (($bytesRead = $webStream.Read($buffer, 0, $bufferSize)) -gt 0) {
             $stream.Write($buffer, 0, $bytesRead)
             $downloadedBytes += $bytesRead
+
+            # Calculate percentage complete
+            $percentComplete = [math]::Floor(($downloadedBytes / $totalBytes) * 100)
+
+            # Display progress bar
             $progressBar = ("#" * ($percentComplete / 5)) + ("-" * (20 - [math]::Floor($percentComplete / 5)))
-            Write-Host -NoNewline "`r[$progressBar] $percentComplete% "
-            $progressBar = ("#" * ($percentComplete / 5)) + ("-" * (20 - ($percentComplete / 5)))
             Write-Host -NoNewline "`r[$progressBar] $percentComplete% "
         }
     }
@@ -58,8 +60,8 @@ try {
         $webStream.Close()
     }
 
-    # Calculate the checksum of the downloaded file
-    Write-Host "Verifying checksum..."
+    # Verify checksum
+    Write-Host "`nVerifying checksum..."
     $calculatedChecksum = Get-FileHash -Path $destFile -Algorithm SHA256 | Select-Object -ExpandProperty Hash
 
     if ($calculatedChecksum -ne $expectedChecksum) {
@@ -69,13 +71,13 @@ try {
     }
 
     # Add directory to PATH for the current user
-    $userPath = [Environment]::GetEnvironmentVariable("Path", "User ")
+    $userPath = [Environment]::GetEnvironmentVariable("Path", "User")
     if (-not ($userPath -like "*$binDir*")) {
-        [Environment]::SetEnvironmentVariable("Path", $userPath + ";$binDir", "User ")
+        [Environment]::SetEnvironmentVariable("Path", $userPath + ";$binDir", "User")
         $env:Path += ";$binDir"
     }
 
-    Write-Host "Successfully installed mine to $homeDir"
+    Write-Host "`nSuccessfully installed mine to $homeDir"
     Write-Host "Mine has been successfully installed."
 }
 catch {
