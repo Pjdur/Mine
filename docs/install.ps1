@@ -51,7 +51,8 @@ try {
             $percentComplete = [math]::Floor(($downloadedBytes / $totalBytes) * 100)
 
             # Display progress bar
-            $progressBar = ("#" * ($percentComplete / 5)) + ("-" * (20 - [math]::Floor($percentComplete / 5)))
+            $progressBar = ("#" * ($percentComplete / 2.5)) + ("-" * (40 - [math]::Floor($percentComplete / 2.5)))
+
             Write-Host -NoNewline "`r[$progressBar] $percentComplete% "
         }
     }
