@@ -30,7 +30,6 @@ if (-not (Test-Path -Path $binDir)) {
 try {
     # Download the executable with progress indication
     $webClient = New-Object System.Net.WebClient
-    $totalBytes = $webClient.DownloadData($exeUrl).Length
     $downloadedBytes = 0
     $bufferSize = 8192
 
@@ -43,16 +42,16 @@ try {
 
     try {
         $buffer = New-Object byte[] $bufferSize
+        $totalBytes = $webClient.DownloadData($exeUrl).Length
         while (($bytesRead = $webStream.Read($buffer, 0, $bufferSize)) -gt 0) {
             $stream.Write($buffer, 0, $bytesRead)
             $downloadedBytes += $bytesRead
-
+            
             # Calculate percentage complete
             $percentComplete = [math]::Floor(($downloadedBytes / $totalBytes) * 100)
 
             # Display progress bar
             $progressBar = ("#" * ($percentComplete / 2.5)) + ("-" * (40 - [math]::Floor($percentComplete / 2.5)))
-
             Write-Host -NoNewline "`r[$progressBar] $percentComplete% "
         }
     }

@@ -165,8 +165,11 @@ class MineInterpreter {
 // Command line interface
 if (require.main === module) {
     const args = process.argv.slice(2);
-    if (args.length !== 1) {
+    if (args.length === 0 || args.length > 1 || args[0] === '--help' || args[0] === '-h') {
         console.log('Usage: mine <file-name>');
+        console.log('A simple interpreter for the Mine language.');
+        console.log('Options:');
+        console.log('  --help, -h    Show this help message');
         process.exit(1);
     }
 
